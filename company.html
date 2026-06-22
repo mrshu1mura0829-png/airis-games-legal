@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AIRIS GAMESの会社情報とお問い合わせ先。">
+<title>会社情報 – AIRIS GAMES</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="lang-ja">
+<header>
+  <a href="index.html" class="logo">AIRIS GAMES</a>
+  <nav>
+    <a href="index.html" data-lang="ja">ホーム</a>
+    <a href="privacy.html" data-lang="ja">プライバシー</a>
+    <a href="terms.html" data-lang="ja">利用規約</a>
+    <a href="company.html" class="active" data-lang="ja">会社情報</a>
+    <a href="index.html" data-lang="en">Home</a>
+    <a href="privacy.html" data-lang="en">Privacy</a>
+    <a href="terms.html" data-lang="en">Terms</a>
+    <a href="company.html" class="active" data-lang="en">Company</a>
+  </nav>
+</header>
+<div class="lang-bar">
+  <button class="lang-btn active" id="btnJa" onclick="setLang('ja')">🇯🇵 日本語</button>
+  <button class="lang-btn" id="btnEn" onclick="setLang('en')">🇺🇸 English</button>
+</div>
+<div class="hero">
+  <h1 data-lang="ja">会社情報</h1>
+  <h1 data-lang="en">Company Information</h1>
+  <p data-lang="ja">AIRIS GAMES について</p>
+  <p data-lang="en">About AIRIS GAMES</p>
+</div>
+<main>
+  <section>
+    <h2>🏢 <span data-lang="ja">会社概要</span><span data-lang="en">Company Profile</span></h2>
+    <div class="company-info">
+      <dl>
+        <dt data-lang="ja">会社名 / Company Name</dt>
+        <dd>AIRIS GAMES <span data-lang="ja">（予定）</span><span data-lang="en">(Planned)</span></dd>
+        <dt data-lang="ja">代表者 / Representative</dt>
+        <dd data-lang="ja">[代表者名 - 後で入力]</dd>
+        <dd data-lang="en">[Representative - TBD]</dd>
+        <dt data-lang="ja">所在地 / Address</dt>
+        <dd data-lang="ja">[所在地 - 後で入力]</dd>
+        <dd data-lang="en">[Address - TBD]</dd>
+        <dt data-lang="ja">設立日 / Established</dt>
+        <dd data-lang="ja">[設立日 - 後で入力]</dd>
+        <dd data-lang="en">[Date - TBD]</dd>
+        <dt data-lang="ja">事業内容 / Business</dt>
+        <dd data-lang="ja">モバイルアプリ・ゲームの企画・開発・運営</dd>
+        <dd data-lang="en">Planning, development, and operation of mobile apps and games</dd>
+      </dl>
+    </div>
+    <p data-lang="ja"><small>※ 会社情報は確定次第更新いたします。</small></p>
+    <p data-lang="en"><small>* Company information will be updated as details are finalized.</small></p>
+  </section>
+
+  <section>
+    <h2>✉️ <span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></h2>
+    <p data-lang="ja">プライバシー・利用規約に関するご質問、データ削除リクエスト等は以下までご連絡ください。</p>
+    <p data-lang="en">For privacy questions, data requests, or other inquiries, please contact us:</p>
+    <div class="company-info">
+      <p>📧 <span data-lang="ja">メール / Email</span></p>
+      <p><a href="mailto:contact@airis-games.com">contact@airis-games.com</a> <span data-lang="ja">（予定）</span><span data-lang="en">(planned)</span></p>
+      <p style="margin-top:1rem;">📋 <span data-lang="ja">お問い合わせフォーム / Contact Form</span></p>
+      <p><a href="#" id="formLink">[フォームURL - 後で設定]</a></p>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-section">
+      <h3 data-lang="ja">プライバシー & 法務</h3><h3 data-lang="en">Privacy & Legal</h3>
+      <ul data-lang="ja"><li><a href="privacy.html">プライバシーポリシー</a></li><li><a href="terms.html">利用規約</a></li><li><a href="company.html">会社情報</a></li></ul>
+      <ul data-lang="en"><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms</a></li><li><a href="company.html">Company</a></li></ul>
+    </div>
+    <div class="footer-section"><h3>AIRIS GAMES</h3><ul data-lang="ja"><li><a href="index.html">ホーム</a></li></ul><ul data-lang="en"><li><a href="index.html">Home</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>&copy; 2025 AIRIS GAMES. All rights reserved.</p></div>
+</footer>
+<script src="lang.js"></script>
+</body>
+</html>

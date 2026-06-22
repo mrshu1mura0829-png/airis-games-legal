@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AIRIS GAMES — あなたの日常を七色に輝かせる。ミニゲームを中心としたモバイルアプリを制作しています。">
+<meta property="og:title" content="AIRIS GAMES">
+<meta property="og:description" content="あなたの日常を七色に輝かせる">
+<meta property="og:type" content="website">
+<title>AIRIS GAMES — あなたの日常を七色に輝かせる</title>
+<style>
+  :root{
+    --navy:#0f1b4d; --blue:#1a6fff; --sky1:#dff3ff; --sky2:#c6e6fa; --sky3:#b8daf5;
+    --text:#0f1b4d; --muted:#4a5a7a; --card:rgba(255,255,255,0.78); --border:#cfe4f7;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:linear-gradient(175deg,#dff3ff 0%,#c6e6fa 55%,#b8daf5 100%);
+    background-attachment:fixed;
+    color:var(--text); line-height:1.8; font-size:15px; min-height:100vh;
+    position:relative;
+  }
+  /* Soft rainbow wash behind content */
+  body::before{
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(120% 60% at 50% -10%,
+        rgba(255,93,93,.10) 0%,
+        rgba(255,184,77,.10) 16%,
+        rgba(255,225,77,.10) 32%,
+        rgba(93,223,126,.10) 48%,
+        rgba(77,184,255,.10) 64%,
+        rgba(166,77,255,.10) 80%,
+        transparent 100%);
+  }
+  /* arched rainbow band, very faint */
+  body::after{
+    content:""; position:fixed; left:50%; top:8%; transform:translateX(-50%);
+    width:160vw; height:160vw; max-width:1400px; max-height:1400px; z-index:0; pointer-events:none;
+    border-radius:50%;
+    background:
+      radial-gradient(circle at center,
+        transparent 60%,
+        rgba(255,93,93,.07) 61%,
+        rgba(255,184,77,.07) 63%,
+        rgba(255,225,77,.07) 65%,
+        rgba(93,223,126,.07) 67%,
+        rgba(77,184,255,.07) 69%,
+        rgba(166,77,255,.07) 71%,
+        transparent 73%);
+  }
+  /* keep content above the wash */
+  .lang-bar,.hero,main,footer{position:relative; z-index:1;}
+  /* Language toggle */
+  .lang-bar{display:flex; justify-content:flex-end; gap:.5rem; padding:.7rem 1.2rem; max-width:960px; margin:0 auto;}
+  .lang-btn{
+    border:1.5px solid rgba(15,27,77,.18); background:rgba(255,255,255,.6); color:#5a6a8a;
+    font-size:.78rem; font-weight:700; padding:.28rem .8rem; border-radius:8px; cursor:pointer;
+    transition:all .15s; font-family:inherit;
+  }
+  .lang-btn.active{background:var(--navy); color:#fff; border-color:var(--navy);}
+  /* Hero */
+  .hero{text-align:center; padding:1.5rem 1.5rem 2.5rem; max-width:960px; margin:0 auto;}
+  .hero-logo{
+    width:min(78%,420px); margin:0 auto 1.4rem; display:block;
+    border-radius:24px; box-shadow:0 12px 40px rgba(15,80,160,.22);
+  }
+  .hero-tagline{
+    font-size:1.45rem; font-weight:900; color:var(--navy); letter-spacing:.02em;
+    margin-bottom:.5rem; line-height:1.5;
+  }
+  .hero-tagline .rainbow{
+    background:linear-gradient(90deg,#ff5d5d,#ffb84d,#ffe14d,#5ddf7e,#4db8ff,#a64dff);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .hero-sub{font-size:.95rem; color:var(--muted);}
+  /* Sections */
+  main{max-width:960px; margin:0 auto; padding:0 1.2rem 3rem;}
+  .block{margin-bottom:2.8rem;}
+  .block-title{
+    font-size:1.15rem; font-weight:900; color:var(--navy); margin-bottom:1.1rem;
+    display:flex; align-items:center; gap:.55rem;
+  }
+  .block-title::after{content:""; flex:1; height:3px; border-radius:2px; background:linear-gradient(90deg,#8fd0f5,transparent);}
+  /* Game grid */
+  .game-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:1rem;}
+  .game-card{
+    background:var(--card); backdrop-filter:blur(6px); border:1px solid var(--border);
+    border-radius:18px; padding:1.2rem 1rem; text-align:center; text-decoration:none;
+    color:var(--navy); transition:transform .12s,box-shadow .12s; box-shadow:0 4px 14px rgba(15,80,160,.08);
+    display:flex; flex-direction:column; align-items:center; gap:.5rem;
+  }
+  .game-card:hover{transform:translateY(-4px); box-shadow:0 10px 26px rgba(15,80,160,.18);}
+  .game-icon{font-size:2.6rem; line-height:1;}
+  .game-name{font-weight:900; font-size:1rem;}
+  .game-desc{font-size:.76rem; color:var(--muted); line-height:1.4;}
+  .game-badge{
+    margin-top:.3rem; font-size:.66rem; font-weight:800; padding:.2rem .6rem; border-radius:20px;
+    background:#ffe14d; color:var(--navy);
+  }
+  .game-badge.soon{background:#d4e6f5; color:#5a6a8a;}
+  .game-badge.live{background:#3df0c4;}
+  /* Character grid */
+  .char-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); gap:.9rem;}
+  .char-card{
+    background:var(--card); backdrop-filter:blur(6px); border:1px solid var(--border);
+    border-radius:16px; padding:1rem .6rem; text-align:center; box-shadow:0 4px 14px rgba(15,80,160,.08);
+  }
+  .char-emoji{font-size:2.4rem;}
+  .char-name{font-size:.82rem; font-weight:700; color:var(--muted); margin-top:.3rem;}
+  .placeholder-note{
+    background:rgba(255,255,255,.6); border:1px dashed var(--border); border-radius:14px;
+    padding:1.2rem; text-align:center; color:var(--muted); font-size:.85rem;
+  }
+  /* Bottom links */
+  .bottom-links{display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;}
+  .bottom-card{
+    background:var(--card); backdrop-filter:blur(6px); border:1px solid var(--border);
+    border-radius:16px; padding:1.2rem 1.3rem; text-decoration:none; color:var(--navy);
+    transition:transform .12s; box-shadow:0 4px 14px rgba(15,80,160,.08);
+  }
+  .bottom-card:hover{transform:translateY(-2px);}
+  .bottom-card .bt{font-weight:900; font-size:1rem; margin-bottom:.2rem;}
+  .bottom-card .bd{font-size:.78rem; color:var(--muted);}
+  /* Footer */
+  footer{text-align:center; padding:2rem 1rem 3rem; color:#7a8aaa; font-size:.78rem;}
+  /* i18n */
+  [data-lang]{display:none;}
+  .lang-ja [data-lang="ja"],.lang-en [data-lang="en"]{display:revert;}
+  @media (max-width:560px){
+    .hero-tagline{font-size:1.2rem;}
+    .bottom-links{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body class="lang-ja">
+
+<div class="lang-bar">
+  <button class="lang-btn active" id="btnJa" onclick="setLang('ja')">🇯🇵 日本語</button>
+  <button class="lang-btn" id="btnEn" onclick="setLang('en')">🇺🇸 English</button>
+</div>
+
+<div class="hero">
+  <img class="hero-logo" src="data:image/webp;base64,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" alt="AIRIS GAMES">
+  <div class="hero-tagline">
+    <span data-lang="ja">あなたの日常を<span class="rainbow">七色</span>に輝かせる</span>
+    <span data-lang="en">Color your everyday in <span class="rainbow">seven shades</span></span>
+  </div>
+  <div class="hero-sub">
+    <span data-lang="ja">AIRIS GAMES — 遊びごころを、毎日に。</span>
+    <span data-lang="en">AIRIS GAMES — a little play, every day.</span>
+  </div>
+</div>
+
+<main>
+
+  <!-- Games -->
+  <div class="block">
+    <div class="block-title">🎮 <span data-lang="ja">ゲーム</span><span data-lang="en">Games</span></div>
+    <div class="game-grid">
+      <a href="#" class="game-card">
+        <div class="game-icon">⚡</div>
+        <div class="game-name">SPEED100</div>
+        <div class="game-desc" data-lang="ja">100種のプチゲーム早押しチャレンジ</div>
+        <div class="game-desc" data-lang="en">100 mini-game speed challenge</div>
+        <div class="game-badge live" data-lang="ja">配信予定</div>
+        <div class="game-badge live" data-lang="en">Coming</div>
+      </a>
+      <a href="#" class="game-card">
+        <div class="game-icon">🏃</div>
+        <div class="game-name">RUN100</div>
+        <div class="game-desc" data-lang="ja">走って避けるランゲーム</div>
+        <div class="game-desc" data-lang="en">Run & dodge runner</div>
+        <div class="game-badge soon" data-lang="ja">近日公開</div>
+        <div class="game-badge soon" data-lang="en">Soon</div>
+      </a>
+      <a href="#" class="game-card">
+        <div class="game-icon">🧩</div>
+        <div class="game-name">PUZZLE100</div>
+        <div class="game-desc" data-lang="ja">頭を使うパズル集</div>
+        <div class="game-desc" data-lang="en">Brain puzzle pack</div>
+        <div class="game-badge soon" data-lang="ja">近日公開</div>
+        <div class="game-badge soon" data-lang="en">Soon</div>
+      </a>
+      <a href="#" class="game-card">
+        <div class="game-icon">🎨</div>
+        <div class="game-name">COLOR100</div>
+        <div class="game-desc" data-lang="ja">色と感覚のゲーム集</div>
+        <div class="game-desc" data-lang="en">Color & sense games</div>
+        <div class="game-badge soon" data-lang="ja">近日公開</div>
+        <div class="game-badge soon" data-lang="en">Soon</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Characters -->
+  <div class="block">
+    <div class="block-title">✨ <span data-lang="ja">キャラクター</span><span data-lang="en">Characters</span></div>
+    <div class="placeholder-note">
+      <span data-lang="ja">キャラクターは制作中です。完成しだい随時公開します！🐸🐤🦸</span>
+      <span data-lang="en">Characters are in the works — coming soon! 🐸🐤🦸</span>
+    </div>
+  </div>
+
+  <!-- Bottom: legal -->
+  <div class="block">
+    <div class="block-title">📄 <span data-lang="ja">その他</span><span data-lang="en">More</span></div>
+    <div class="bottom-links">
+      <a href="privacy.html" class="bottom-card">
+        <div class="bt">🔒 <span data-lang="ja">プライバシーポリシー</span><span data-lang="en">Privacy Policy</span></div>
+        <div class="bd" data-lang="ja">データの取り扱い・利用規約について</div>
+        <div class="bd" data-lang="en">Data handling & terms</div>
+      </a>
+      <a href="company.html" class="bottom-card">
+        <div class="bt">🏢 <span data-lang="ja">会社概要</span><span data-lang="en">Company</span></div>
+        <div class="bd" data-lang="ja">運営会社・お問い合わせ</div>
+        <div class="bd" data-lang="en">About us & contact</div>
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>&copy; 2025 AIRIS GAMES. All rights reserved.</p>
+</footer>
+
+<script>
+function setLang(lang){
+  document.body.className='lang-'+lang;
+  document.documentElement.lang=lang;
+  var ja=document.getElementById('btnJa'), en=document.getElementById('btnEn');
+  if(ja) ja.classList.toggle('active', lang==='ja');
+  if(en) en.classList.toggle('active', lang==='en');
+  try{ localStorage.setItem('airis_lang', lang); }catch(e){}
+}
+window.addEventListener('DOMContentLoaded', function(){
+  var saved='ja';
+  try{ saved=localStorage.getItem('airis_lang')||'ja'; }catch(e){}
+  setLang(saved);
+});
+</script>
+
+</body>
+</html>
